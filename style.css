@@ -19,6 +19,7 @@
   user-select: none;
 
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -411,7 +412,7 @@ body::after {
 }
 
 #editorTextarea:focus {
-  box-shadow: 0 0 0 2px var(--accent-amber);
+  box-shadow: 0 0 0 2px var(--accent-teal);
 }
 
 /* Scrollbar */
