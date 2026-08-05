@@ -413,3 +413,10 @@ function tick(now) {
 }
 
 requestAnimationFrame(tick);
+
+
+document.addEventListener("pointerdown", (e) => {
+    if (e.target instanceof HTMLElement) {
+        e.target.blur();
+    }
+});
