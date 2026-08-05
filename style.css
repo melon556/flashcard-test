@@ -14,6 +14,11 @@
 
 * {
   box-sizing: border-box;
+
+  -webkit-user-select: none;
+  user-select: none;
+
+  -webkit-touch-callout: none;
 }
 
 html,
@@ -385,7 +390,7 @@ body::after {
 
   outline: none;
 
-  border-radius: 14px;
+  border-radius: 5px;
 
   padding: 16px;
 
@@ -399,8 +404,10 @@ body::after {
 
   box-sizing: border-box;
 
-  user-select: text;
   -webkit-user-select: text;
+  user-select: text;
+
+  -webkit-touch-callout: default;
 }
 
 #editorTextarea:focus {
