@@ -283,6 +283,43 @@ body::after {
   gap: 8px;
 }
 
+.edit-btn:focus,
+.edit-btn:active,
+.edit-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ctrl-btn:focus,
+.ctrl-btn:active,
+.ctrl-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+.edit-btn{
+    outline:none;
+}
+
+.edit-btn:focus,
+.edit-btn:focus-visible{
+    outline:none !important;
+    box-shadow:none !important;
+}
+
+button{
+    outline:none;
+}
+
+button:focus,
+button:focus-visible{
+    outline:none !important;
+    box-shadow:none !important;
+}
+
 .edit-icon {
   width: 16px;
 
@@ -476,7 +513,7 @@ body::after {
 }
 
 #saveEditor {
-  background: var(--accent-teal);
+  background: var(--accent-amber);
 
   color: #1a1a1a;
 }
