@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kartu Kata — Hujan Malam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="rainCanvas" aria-hidden="true"></canvas>
+  <canvas id="splashCanvas" aria-hidden="true"></canvas>
+
+  <main class="stage">
+    <div class="deck">
+      <div class="meta-row">
+        <!--<span class="eyebrow">EN &rarr; ID</span>-->
+        <span class="counter" id="counter">01 / 20</span>
+      </div>
+
+      <div class="card" id="card" role="button" tabindex="0" aria-label="Kartu kata, klik untuk membalik">
+        <div class="card-inner" id="cardInner">
+          <div class="card-face card-front">
+            <span class="face-label">kata</span>
+            <p class="word" id="wordEn">Butterfly</p>
+            <!--<span class="hint">klik untuk lihat arti</span>-->
+          </div>
+          <div class="card-face card-back">
+            <span class="face-label">arti</span>
+            <p class="word word-id" id="wordId">Kupu-kupu</p>
+            <!--<span class="hint">klik untuk kembali</span>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctrl-btn" id="btnBack" aria-label="Kartu sebelumnya">&lsaquo; Back</button>
+        <button class="ctrl-btn ctrl-shuffle" id="btnShuffle" aria-label="Ubah urutan kartu">
+          <span id="shuffleLabel">Acak</span>
+        </button>
+        <button class="ctrl-btn" id="btnNext" aria-label="Kartu berikutnya">Next &rsaquo;</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
