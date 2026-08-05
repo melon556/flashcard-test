@@ -130,10 +130,6 @@ body::after {
   transform-style: preserve-3d;
 }
 
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
 .card-face {
   position: absolute;
   inset: 0;
