@@ -19,6 +19,10 @@
 html,
 body {
   height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 body {
@@ -249,7 +253,6 @@ body::after {
   color: var(--accent-teal);
 }
 
-
 /* ---- ini adalah bagian tambahan untuk database ---- */
 
 /* ==========================================================
@@ -395,6 +398,9 @@ body::after {
   color: #f5efe5;
 
   box-sizing: border-box;
+
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 #editorTextarea:focus {
@@ -473,7 +479,6 @@ body::after {
   filter: brightness(1.05);
 }
 
-
 /* ---- responsive ---- */
 @media (max-width: 420px) {
   .stage {
@@ -493,4 +498,3 @@ body::after {
     transition: none;
   }
 }
-
