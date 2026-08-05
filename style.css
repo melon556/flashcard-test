@@ -25,7 +25,11 @@ body {
   margin: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 8%, var(--accent-amber-soft), transparent 60%),
+    radial-gradient(
+      ellipse 60% 40% at 50% 8%,
+      var(--accent-amber-soft),
+      transparent 60%
+    ),
     linear-gradient(180deg, #0a151c 0%, var(--bg-deep) 45%, #0a1319 100%);
   font-family: "Work Sans", sans-serif;
   color: var(--control-text);
@@ -111,7 +115,9 @@ body::after {
   outline: none;
 }
 .card:focus-visible .card-inner {
-  box-shadow: 0 0 0 3px var(--bg-deep), 0 0 0 6px var(--accent-amber);
+  box-shadow:
+    0 0 0 3px var(--bg-deep),
+    0 0 0 6px var(--accent-amber);
 }
 
 .card-inner {
@@ -146,14 +152,22 @@ body::after {
 
 .card-front {
   background:
-    radial-gradient(120% 140% at 8% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
+    radial-gradient(
+      120% 140% at 8% 0%,
+      rgba(255, 255, 255, 0.35),
+      transparent 55%
+    ),
     var(--card-paper);
   color: var(--ink);
 }
 
 .card-back {
   background:
-    radial-gradient(120% 140% at 92% 100%, rgba(255, 255, 255, 0.3), transparent 55%),
+    radial-gradient(
+      120% 140% at 92% 100%,
+      rgba(255, 255, 255, 0.3),
+      transparent 55%
+    ),
     var(--card-paper-back);
   color: var(--ink);
   transform: rotateY(180deg);
@@ -207,7 +221,11 @@ body::after {
   font-size: 0.9rem;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .ctrl-btn:hover {
@@ -233,6 +251,9 @@ body::after {
 
 /* ---- responsive ---- */
 @media (max-width: 420px) {
+  .card-inner {
+    transition: none;
+  }
   .stage {
     padding: 8vh 5vw;
   }
