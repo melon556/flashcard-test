@@ -433,5 +433,5 @@ function updateEditButton() {
 
   editWordsBtn.disabled = isLandscape;
 
-  editWordsBtn.textContent = isLandscape ? "Portrait" : "Edit";
+  editWordsBtn.textContent = isLandscape ? "Ubah Ke Tampilan Portrait" : "Edit";
 }
