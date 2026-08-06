@@ -56,12 +56,13 @@ const modalContent = document.querySelector(".modal-content");
 Sampai Sini
 ========================================================== */
 
-/* Durasi ini harus sama dengan transition transform di .card-inner
-   (style.css), supaya sensor kebuka tepat saat animasi selesai. */
-const CARD_FLIP_MS = window.matchMedia("(prefers-reduced-motion: reduce)")
-  .matches
+/* Berapa lama teks arti disembunyikan setelah pindah kata ketika
+   kartu sedang terbalik. */
+const CENSOR_DURATION_MS = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches
   ? 0
-  : 650;
+  : 1000;
 let censorTimeoutId = null;
 
 function render(censorDuringFlip) {
@@ -73,7 +74,7 @@ function render(censorDuringFlip) {
     wordIdEl.classList.add("censored");
     censorTimeoutId = window.setTimeout(() => {
       wordIdEl.classList.remove("censored");
-    }, CARD_FLIP_MS);
+    }, CENSOR_DURATION_MS);
   }
 
   wordEnEl.textContent = w.en;
