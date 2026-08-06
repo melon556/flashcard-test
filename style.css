@@ -23,11 +23,11 @@
 }
 
 html {
-  -webkit-touch-callout: none;
+    -webkit-touch-callout: none;
 }
 
 * {
-  -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button,
@@ -37,13 +37,14 @@ button,
 span,
 svg,
 p {
-  -webkit-user-select: none;
-  user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
-  -webkit-touch-callout: none;
+    -webkit-touch-callout: none;
 
-  touch-action: manipulation;
+    touch-action: manipulation;
 }
+
 
 html,
 body {
@@ -282,82 +283,6 @@ body::after {
   color: var(--accent-teal);
 }
 
-/* ===========================================
-   ROTATE OVERLAY
-=========================================== */
-
-.rotate-overlay {
-  position: fixed;
-
-  inset: 0;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: rgba(8, 15, 20, 0.95);
-
-  backdrop-filter: blur(18px);
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transition: 0.35s;
-
-  z-index: 5000;
-}
-
-.rotate-overlay.show {
-  opacity: 1;
-
-  visibility: visible;
-}
-
-.rotate-box {
-  text-align: center;
-
-  max-width: 320px;
-
-  padding: 28px;
-}
-
-.phone-icon {
-  font-size: 70px;
-
-  animation: phoneFloat 2s ease-in-out infinite;
-}
-
-.rotate-box h2 {
-  color: var(--accent-teal);
-
-  margin-top: 20px;
-}
-
-.rotate-box p {
-  color: var(--muted-text);
-
-  line-height: 1.7;
-
-  margin-top: 12px;
-}
-
-@keyframes phoneFloat {
-  0% {
-    transform: rotate(-8deg);
-  }
-
-  50% {
-    transform: rotate(8deg);
-  }
-
-  100% {
-    transform: rotate(-8deg);
-  }
-}
-
 /* ---- ini adalah bagian tambahan untuk database ---- */
 
 /* ==========================================================
@@ -398,24 +323,25 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 
-.edit-btn {
-  outline: none;
+
+.edit-btn{
+    outline:none;
 }
 
 .edit-btn:focus,
-.edit-btn:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
+.edit-btn:focus-visible{
+    outline:none !important;
+    box-shadow:none !important;
 }
 
-button {
-  outline: none;
+button{
+    outline:none;
 }
 
 button:focus,
-button:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
+button:focus-visible{
+    outline:none !important;
+    box-shadow:none !important;
 }
 
 .edit-icon {
@@ -622,6 +548,21 @@ button:focus-visible {
   filter: brightness(1.05);
 }
 
+.edit-btn:disabled{
+
+    color:#777;
+
+    opacity:.4;
+
+    filter:grayscale(1);
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+
+}
+
+
 /* ---- responsive ---- */
 @media (max-width: 420px) {
   .stage {
@@ -641,3 +582,5 @@ button:focus-visible {
     transition: none;
   }
 }
+
+
