@@ -10,6 +10,14 @@
   --accent-teal: #4f8577;
   --muted-text: #9fb0ac;
   --control-text: #ece4d3;
+
+  /* --vw/--vh: satuan "vw/vh logis". Nilainya diperbarui lewat JS
+     (lihat updateOrientationUnits di script.js) supaya saat mobile
+     dikunci ke portrait (body diputar via CSS), semua ukuran yang
+     memakai satuan ini tetap mengikuti dimensi portrait, bukan
+     dimensi layar landscape yang sesungguhnya. Default: satuan asli. */
+  --vw: 1vw;
+  --vh: 1vh;
 }
 
 * {
@@ -77,8 +85,8 @@ body::after {
 #splashCanvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: calc(var(--vw) * 100);
+  height: calc(var(--vh) * 100);
   pointer-events: none;
 }
 
@@ -94,12 +102,12 @@ body::after {
 .stage {
   position: relative;
   z-index: 1;
-  width: 100vw;
-  height: 100vh;
+  width: calc(var(--vw) * 100);
+  height: calc(var(--vh) * 100);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10vh 6vw;
+  padding: calc(var(--vh) * 10) calc(var(--vw) * 6);
 }
 
 .deck {
@@ -131,7 +139,7 @@ body::after {
 .card {
   width: 100%;
   aspect-ratio: 4 / 3;
-  max-height: 48vh;
+  max-height: calc(var(--vh) * 48);
   perspective: 1500px;
   cursor: pointer;
   border-radius: 20px;
@@ -211,7 +219,7 @@ body::after {
 .word {
   font-family: "Fraunces", serif;
   font-weight: 600;
-  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-size: clamp(1.8rem, calc(var(--vw) * 6), 3rem);
   line-height: 1.15;
   margin: 14px 0;
 }
@@ -362,7 +370,7 @@ button:focus-visible {
 }
 
 .modal-content {
-  width: min(700px, 90vw);
+  width: min(700px, calc(var(--vw) * 90));
 
   background: var(--bg-panel);
 
@@ -410,7 +418,7 @@ button:focus-visible {
 
   min-height: 250px;
 
-  max-height: 55vh;
+  max-height: calc(var(--vh) * 55);
 
   overflow-y: auto;
 
@@ -519,30 +527,38 @@ button:focus-visible {
 /* ==========================================================
    KUNCI ORIENTASI: PORTRAIT SAJA (mobile)
    Di layar kecil (HP), jika perangkat diputar ke landscape,
-   seluruh halaman diputar balik lewat CSS supaya tetap tampil
-   portrait di layar. Jadi tampilan mobile tidak akan pernah
+   <body> (bukan <html> — lebih konsisten lintas browser)
+   diputar balik lewat CSS supaya tampilan di layar tetap
+   terlihat portrait. Jadi tampilan mobile tidak akan pernah
    "landscape" — tombol Edit selalu bisa langsung dipakai.
    (max-height dipakai karena saat landscape, tinggi viewport
-   HP menjadi kecil — sisi pendek fisik layarnya.)
+   HP menjadi kecil — sisi pendek fisik layarnya. 600px cukup
+   untuk mencakup HP tapi tidak mengenai tablet/laptop.)
 ========================================================== */
 
-@media screen and (orientation: landscape) and (max-height: 550px) {
+@media screen and (orientation: landscape) and (max-height: 600px) {
   html {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    transform: rotate(-90deg);
-    transform-origin: left top;
+  }
+
+  body {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100vh;
     height: 100vw;
+    overflow: hidden;
+    transform-origin: left top;
+    transform: rotate(-90deg);
   }
 }
 
 /* ---- responsive ---- */
 @media (max-width: 420px) {
   .stage {
-    padding: 8vh 5vw;
+    padding: calc(var(--vh) * 8) calc(var(--vw) * 5);
   }
   .ctrl-btn {
     padding: 12px 10px;
