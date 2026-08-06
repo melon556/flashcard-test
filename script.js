@@ -85,24 +85,6 @@ function wordsToText() {
 }
 
 function openEditor() {
-  const landscape = window.innerWidth > window.innerHeight;
-
-  if (landscape) {
-    waitingPortrait = true;
-
-    rotateOverlay.classList.add("show");
-
-    return;
-  }
-
-  editorTextarea.value = wordsToText();
-
-  editorModal.classList.add("show");
-
-  editorTextarea.focus();
-}
-
-function reallyOpenEditor() {
   editorTextarea.value = wordsToText();
 
   editorModal.classList.add("show");
@@ -113,22 +95,6 @@ function reallyOpenEditor() {
 function closeEditor() {
   editorModal.classList.remove("show");
 }
-
-window.addEventListener("resize", () => {
-  if (!waitingPortrait) return;
-
-  const portrait = window.innerHeight > window.innerWidth;
-
-  if (portrait) {
-    waitingPortrait = false;
-
-    rotateOverlay.classList.remove("show");
-
-    setTimeout(() => {
-      reallyOpenEditor();
-    }, 250);
-  }
-});
 
 /* ==========================================================
    SAVE EDITOR
@@ -285,7 +251,9 @@ order = WORDS.map((_, i) => i);
 
 render();
 
-render();
+updateEditButton();
+
+window.addEventListener("resize", updateEditButton);
 
 /* ---------------------------------------------------------
    Rain + splash canvas
@@ -301,10 +269,6 @@ const splashCtx = splashCanvas.getContext("2d");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
-
-const rotateOverlay = document.getElementById("rotateOverlay");
-
-let waitingPortrait = false;
 
 let dpr = Math.min(window.devicePixelRatio || 1, 2);
 let W = window.innerWidth;
@@ -457,3 +421,17 @@ document.addEventListener("pointerdown", (e) => {
     e.target.blur();
   }
 });
+
+function updateEditButton() {
+  const isLandscape = window.innerWidth > window.innerHeight;
+
+  editWordsBtn.disabled = isLandscape;
+}
+
+function updateEditButton() {
+  const isLandscape = window.innerWidth > window.innerHeight;
+
+  editWordsBtn.disabled = isLandscape;
+
+  editWordsBtn.textContent = isLandscape ? "Portrait" : "Edit";
+}
