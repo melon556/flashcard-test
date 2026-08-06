@@ -208,15 +208,23 @@ body::after {
 
 .word-id {
   color: #35544a;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.2s ease;
 }
 
 /* Disensor sementara habis pindah kata ketika kartu sedang terbalik,
    supaya arti kata berikutnya tidak sempat terlihat sekilas. Teksnya
    disembunyikan total (bukan cuma blur), lalu dimunculkan lagi lewat
-   JS setelah beberapa saat. */
+   JS setelah beberapa saat.
+
+   transition: none di sini penting — saat class ini DITAMBAHKAN,
+   opacity harus langsung jatuh ke 0 tanpa animasi (kalau ikut
+   transisi 0.2s milik .word-id, teks barunya akan sempat kelihatan
+   sekilas selagi opacity-nya turun). Saat class ini DILEPAS lagi,
+   transisi 0.2s dari .word-id yang berlaku, jadi teksnya muncul
+   kembali dengan fade-in yang halus. */
 .word-id.censored {
   opacity: 0;
+  transition: none;
   user-select: none;
 }
 
@@ -556,7 +564,7 @@ button:focus-visible {
 @media (orientation: landscape) and (max-height: 500px) {
   .stage {
     align-items: flex-start;
-    padding: 12vh 5vw 12vh 5vw;
+    padding: 2vh 3vw 6vh 3vw;
   }
 
   .deck {
@@ -567,7 +575,7 @@ button:focus-visible {
   }
 
   .card {
-     max-height: 42vh;  
+    max-height: 42vh;
   }
 
   .controls {
