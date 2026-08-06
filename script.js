@@ -62,7 +62,7 @@ const CENSOR_DURATION_MS = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches
   ? 0
-  : 2000;
+  : 1000;
 let censorTimeoutId = null;
 
 function render(censorDuringFlip) {
