@@ -19,14 +19,15 @@
     <main class="stage">
       <div class="deck">
         <div class="meta-row">
-          <button id="editWordsBtn" class="edit-btn">
+          <button id="editWordsBtn" class="edit-btn" aria-label="Edit kata">
             <svg class="edit-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 20h9" />
 
               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
             </svg>
 
-            <span>Edit</span>
+            <span class="edit-label edit-label-default">Edit</span>
+            <span class="edit-label edit-label-locked">Ubah ke mode portrait</span>
           </button>
           <span class="counter" id="counter">01 / 20</span>
         </div>
@@ -53,22 +54,31 @@
         </div>
 
         <div class="controls">
-          <button class="ctrl-btn" id="btnBack">
-            <span class="desktop-label">&lsaquo; Back</span>
-
-            <span class="mobile-label">&lsaquo;</span>
+          <button class="ctrl-btn" id="btnBack" aria-label="Kartu sebelumnya">
+            <svg class="ctrl-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            <span class="ctrl-text">&lsaquo; Back</span>
           </button>
-
-          <button class="ctrl-btn ctrl-shuffle" id="btnShuffle">
-            <span id="shuffleLabel" class="desktop-label"> Acak </span>
-
-            <span class="mobile-label"> ⤮ </span>
+          <button
+            class="ctrl-btn ctrl-shuffle"
+            id="btnShuffle"
+            aria-label="Ubah urutan kartu"
+          >
+            <svg class="ctrl-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 3h5v5" />
+              <path d="M4 20L21 3" />
+              <path d="M21 16v5h-5" />
+              <path d="M15 15l6 6" />
+              <path d="M4 4l5 5" />
+            </svg>
+            <span class="ctrl-text" id="shuffleLabel">Acak</span>
           </button>
-
-          <button class="ctrl-btn" id="btnNext">
-            <span class="desktop-label"> Next &rsaquo; </span>
-
-            <span class="mobile-label"> &rsaquo; </span>
+          <button class="ctrl-btn" id="btnNext" aria-label="Kartu berikutnya">
+            <svg class="ctrl-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+            <span class="ctrl-text">Next &rsaquo;</span>
           </button>
         </div>
       </div>
