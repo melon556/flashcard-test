@@ -208,14 +208,15 @@ body::after {
 
 .word-id {
   color: #35544a;
-  transition: filter 0.2s ease;
+  transition: opacity 0.15s ease;
 }
 
-/* Disensor sementara saat kartu masih dalam proses rotate kembali ke
-   depan (habis pindah kata ketika kartu sedang terbalik), supaya arti
-   kata berikutnya tidak sempat terlihat sekilas di tengah animasi. */
+/* Disensor sementara habis pindah kata ketika kartu sedang terbalik,
+   supaya arti kata berikutnya tidak sempat terlihat sekilas. Teksnya
+   disembunyikan total (bukan cuma blur), lalu dimunculkan lagi lewat
+   JS setelah beberapa saat. */
 .word-id.censored {
-  filter: blur(14px);
+  opacity: 0;
   user-select: none;
 }
 
@@ -555,7 +556,7 @@ button:focus-visible {
 @media (orientation: landscape) and (max-height: 500px) {
   .stage {
     align-items: flex-start;
-    padding: 11vh 5vw 6vh 7vw;
+    padding: 2vh 3vw 6vh 3vw;
   }
 
   .deck {
@@ -566,12 +567,12 @@ button:focus-visible {
   }
 
   .card {
-    max-height: 60vh;
+    max-height: 42vh;
   }
 
   .controls {
     position: fixed;
-    right: 30px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     flex-direction: column;
