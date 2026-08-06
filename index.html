@@ -53,18 +53,22 @@
         </div>
 
         <div class="controls">
-          <button class="ctrl-btn" id="btnBack" aria-label="Kartu sebelumnya">
-            &lsaquo; Back
+          <button class="ctrl-btn" id="btnBack">
+            <span class="desktop-label">&lsaquo; Back</span>
+
+            <span class="mobile-label">&lsaquo;</span>
           </button>
-          <button
-            class="ctrl-btn ctrl-shuffle"
-            id="btnShuffle"
-            aria-label="Ubah urutan kartu"
-          >
-            <span id="shuffleLabel">Acak</span>
+
+          <button class="ctrl-btn ctrl-shuffle" id="btnShuffle">
+            <span id="shuffleLabel" class="desktop-label"> Acak </span>
+
+            <span class="mobile-label"> ⤮ </span>
           </button>
-          <button class="ctrl-btn" id="btnNext" aria-label="Kartu berikutnya">
-            Next &rsaquo;
+
+          <button class="ctrl-btn" id="btnNext">
+            <span class="desktop-label"> Next &rsaquo; </span>
+
+            <span class="mobile-label"> &rsaquo; </span>
           </button>
         </div>
       </div>
