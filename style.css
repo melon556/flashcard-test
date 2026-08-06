@@ -22,16 +22,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.app {
-  width: min(100vw, 430px);
-
-  margin: auto;
-
-  height: 100vh;
-
-  position: relative;
-}
-
 html {
   -webkit-touch-callout: none;
 }
@@ -290,6 +280,82 @@ body::after {
 .ctrl-shuffle.is-shuffled {
   border-color: var(--accent-teal);
   color: var(--accent-teal);
+}
+
+/* ===========================================
+   ROTATE OVERLAY
+=========================================== */
+
+.rotate-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: rgba(8, 15, 20, 0.95);
+
+  backdrop-filter: blur(18px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition: 0.35s;
+
+  z-index: 5000;
+}
+
+.rotate-overlay.show {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.rotate-box {
+  text-align: center;
+
+  max-width: 320px;
+
+  padding: 28px;
+}
+
+.phone-icon {
+  font-size: 70px;
+
+  animation: phoneFloat 2s ease-in-out infinite;
+}
+
+.rotate-box h2 {
+  color: var(--accent-teal);
+
+  margin-top: 20px;
+}
+
+.rotate-box p {
+  color: var(--muted-text);
+
+  line-height: 1.7;
+
+  margin-top: 12px;
+}
+
+@keyframes phoneFloat {
+  0% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
+  }
+
+  100% {
+    transform: rotate(-8deg);
+  }
 }
 
 /* ---- ini adalah bagian tambahan untuk database ---- */
