@@ -56,8 +56,26 @@ const modalContent = document.querySelector(".modal-content");
 Sampai Sini
 ========================================================== */
 
-function render() {
+/* Durasi ini harus sama dengan transition transform di .card-inner
+   (style.css), supaya sensor kebuka tepat saat animasi selesai. */
+const CARD_FLIP_MS = window.matchMedia("(prefers-reduced-motion: reduce)")
+  .matches
+  ? 0
+  : 650;
+let censorTimeoutId = null;
+
+function render(censorDuringFlip) {
   const w = WORDS[order[currentIndex]];
+  const wasFlipped = cardEl.classList.contains("flipped");
+
+  if (censorDuringFlip && wasFlipped) {
+    window.clearTimeout(censorTimeoutId);
+    wordIdEl.classList.add("censored");
+    censorTimeoutId = window.setTimeout(() => {
+      wordIdEl.classList.remove("censored");
+    }, CARD_FLIP_MS);
+  }
+
   wordEnEl.textContent = w.en;
   wordIdEl.textContent = w.id;
   counterEl.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${WORDS.length}`;
@@ -153,12 +171,12 @@ function saveWords() {
 
 function goNext() {
   currentIndex = (currentIndex + 1) % order.length;
-  render();
+  render(true);
 }
 
 function goBack() {
   currentIndex = (currentIndex - 1 + order.length) % order.length;
-  render();
+  render(true);
 }
 
 function shuffleArray(arr) {
