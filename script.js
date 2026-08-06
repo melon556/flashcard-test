@@ -85,6 +85,24 @@ function wordsToText() {
 }
 
 function openEditor() {
+  const landscape = window.innerWidth > window.innerHeight;
+
+  if (landscape) {
+    waitingPortrait = true;
+
+    rotateOverlay.classList.add("show");
+
+    return;
+  }
+
+  editorTextarea.value = wordsToText();
+
+  editorModal.classList.add("show");
+
+  editorTextarea.focus();
+}
+
+function reallyOpenEditor() {
   editorTextarea.value = wordsToText();
 
   editorModal.classList.add("show");
@@ -95,6 +113,22 @@ function openEditor() {
 function closeEditor() {
   editorModal.classList.remove("show");
 }
+
+window.addEventListener("resize", () => {
+  if (!waitingPortrait) return;
+
+  const portrait = window.innerHeight > window.innerWidth;
+
+  if (portrait) {
+    waitingPortrait = false;
+
+    rotateOverlay.classList.remove("show");
+
+    setTimeout(() => {
+      reallyOpenEditor();
+    }, 250);
+  }
+});
 
 /* ==========================================================
    SAVE EDITOR
@@ -268,6 +302,10 @@ const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
 
+const rotateOverlay = document.getElementById("rotateOverlay");
+
+let waitingPortrait = false;
+
 let dpr = Math.min(window.devicePixelRatio || 1, 2);
 let W = window.innerWidth;
 let H = window.innerHeight;
@@ -414,9 +452,8 @@ function tick(now) {
 
 requestAnimationFrame(tick);
 
-
 document.addEventListener("pointerdown", (e) => {
-    if (e.target instanceof HTMLElement) {
-        e.target.blur();
-    }
+  if (e.target instanceof HTMLElement) {
+    e.target.blur();
+  }
 });
