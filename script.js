@@ -197,11 +197,7 @@ cardEl.addEventListener("keydown", (e) => {
     e.preventDefault();
     flipCard();
     const rect = cardEl.getBoundingClientRect();
-    const p = toCanvasPoint(
-      rect.left + rect.width / 2,
-      rect.top + rect.height / 2,
-    );
-    spawnSplash(p.x, p.y);
+    spawnSplash(rect.left + rect.width / 2, rect.top + rect.height / 2);
   }
 });
 
@@ -222,8 +218,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 editorModal.addEventListener("pointerdown", (e) => {
-  const p = toCanvasPoint(e.clientX, e.clientY);
-  spawnSplash(p.x, p.y);
+  spawnSplash(e.clientX, e.clientY);
 
   if (e.target === editorModal) {
     closeEditor();
@@ -233,8 +228,7 @@ editorModal.addEventListener("pointerdown", (e) => {
 document
   .querySelector(".modal-content")
   .addEventListener("pointerdown", (e) => {
-    const p = toCanvasPoint(e.clientX, e.clientY);
-    spawnSplash(p.x, p.y);
+    spawnSplash(e.clientX, e.clientY);
   });
 
 document.addEventListener("keydown", (e) => {
@@ -257,51 +251,7 @@ order = WORDS.map((_, i) => i);
 
 render();
 
-/* ---------------------------------------------------------
-   Kunci orientasi: portrait saja (mobile)
-   Saat HP diputar ke landscape, CSS memutar balik <body> supaya
-   tampilan tetap terlihat portrait (lihat style.css). Tapi satuan
-   vw/vh bawaan browser tetap mengikuti layar fisik, bukan kotak
-   yang sudah diputar — jadi ukuran-ukuran di CSS diganti memakai
-   variabel --vw/--vh yang dihitung ulang di sini agar ikut
-   "logika portrait", bukan ukuran landscape yang sebenarnya.
---------------------------------------------------------- */
-const FORCE_PORTRAIT_QUERY = "(orientation: landscape) and (max-height: 600px)";
-
-function isForcedPortrait() {
-  return window.matchMedia(FORCE_PORTRAIT_QUERY).matches;
-}
-
-function logicalViewportSize() {
-  if (isForcedPortrait()) {
-    // layar fisik landscape -> sisi pendek (innerHeight) jadi lebar
-    // logis, sisi panjang (innerWidth) jadi tinggi logis
-    return { w: window.innerHeight, h: window.innerWidth };
-  }
-  return { w: window.innerWidth, h: window.innerHeight };
-}
-
-// Klik/tap dilaporkan browser dalam koordinat layar asli (real),
-// tapi kanvas hujan/percikan digambar dalam ruang koordinat logis
-// (yang sudah "diputar balik" ke portrait). Fungsi ini mengubah
-// titik klik asli menjadi titik yang tepat di ruang logis tsb.
-function toCanvasPoint(clientX, clientY) {
-  if (isForcedPortrait()) {
-    return { x: window.innerHeight - clientY, y: clientX };
-  }
-  return { x: clientX, y: clientY };
-}
-
-function updateOrientationUnits() {
-  const { w, h } = logicalViewportSize();
-  const root = document.documentElement;
-  root.style.setProperty("--vw", `${w / 100}px`);
-  root.style.setProperty("--vh", `${h / 100}px`);
-}
-
-updateOrientationUnits();
-window.addEventListener("resize", updateOrientationUnits);
-window.addEventListener("orientationchange", updateOrientationUnits);
+render();
 
 /* ---------------------------------------------------------
    Rain + splash canvas
@@ -331,10 +281,8 @@ function setupCanvas(canvas, ctx) {
 }
 
 function resize() {
-  updateOrientationUnits();
-  const size = logicalViewportSize();
-  W = size.w;
-  H = size.h;
+  W = window.innerWidth;
+  H = window.innerHeight;
   setupCanvas(rainCanvas, rainCtx);
   setupCanvas(splashCanvas, splashCtx);
 }
@@ -421,8 +369,7 @@ function spawnSplash(x, y) {
 // splash appears wherever the page is clicked — anywhere on screen,
 // not just on the flashcard — and is drawn on its own top-most canvas
 function createSplash(e) {
-  const p = toCanvasPoint(e.clientX, e.clientY);
-  spawnSplash(p.x, p.y);
+  spawnSplash(e.clientX, e.clientY);
 }
 
 document.addEventListener("pointerdown", createSplash);
