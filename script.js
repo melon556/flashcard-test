@@ -251,8 +251,6 @@ order = WORDS.map((_, i) => i);
 
 render();
 
-render();
-
 /* ---------------------------------------------------------
    Rain + splash canvas
    Uses gambar1.png as the particle sprite. If the file isn't
