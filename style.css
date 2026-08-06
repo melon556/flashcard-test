@@ -208,6 +208,15 @@ body::after {
 
 .word-id {
   color: #35544a;
+  transition: filter 0.2s ease;
+}
+
+/* Disensor sementara saat kartu masih dalam proses rotate kembali ke
+   depan (habis pindah kata ketika kartu sedang terbalik), supaya arti
+   kata berikutnya tidak sempat terlihat sekilas di tengah animasi. */
+.word-id.censored {
+  filter: blur(14px);
+  user-select: none;
 }
 
 .hint {
@@ -545,12 +554,19 @@ button:focus-visible {
    ikut kena aturan ini. */
 @media (orientation: landscape) and (max-height: 500px) {
   .stage {
-    padding: 4vh 6vw;
+    align-items: flex-start;
+    padding: 2vh 3vw 6vh 3vw;
   }
 
   .deck {
-    gap: 14px;
+    max-width: none;
+    width: 100%;
+    gap: 12px;
     padding-right: 64px;
+  }
+
+  .card {
+    max-height: 42vh;
   }
 
   .controls {
