@@ -205,7 +205,37 @@ btnNext.addEventListener("click", goNext);
 btnBack.addEventListener("click", goBack);
 btnShuffle.addEventListener("click", toggleShuffle);
 
-editWordsBtn.addEventListener("click", openEditor);
+/* ==========================================================
+   KUNCI TOMBOL EDIT SAAT MOBILE LANDSCAPE
+   Modal editor butuh ruang vertikal yang cukup, jadi di HP
+   posisi landscape tombol Edit dinonaktifkan dan labelnya
+   berubah menjadi ajakan untuk memutar layar ke portrait.
+========================================================== */
+
+const mobileLandscapeQuery = window.matchMedia(
+  "(orientation: landscape) and (max-height: 500px)",
+);
+
+function updateEditLockState(e) {
+  const isLocked = e.matches;
+  editWordsBtn.disabled = isLocked;
+  editWordsBtn.setAttribute("aria-disabled", String(isLocked));
+  editWordsBtn.setAttribute(
+    "aria-label",
+    isLocked ? "Putar layar ke mode portrait untuk mengedit" : "Edit kata",
+  );
+  if (isLocked && editorModal.classList.contains("show")) {
+    closeEditor();
+  }
+}
+
+updateEditLockState(mobileLandscapeQuery);
+mobileLandscapeQuery.addEventListener("change", updateEditLockState);
+
+editWordsBtn.addEventListener("click", () => {
+  if (editWordsBtn.disabled) return;
+  openEditor();
+});
 
 cancelEditor.addEventListener("click", closeEditor);
 
@@ -248,8 +278,6 @@ if (savedWords) {
 }
 
 order = WORDS.map((_, i) => i);
-
-render();
 
 render();
 
