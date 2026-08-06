@@ -556,7 +556,7 @@ button:focus-visible {
 @media (orientation: landscape) and (max-height: 500px) {
   .stage {
     align-items: flex-start;
-    padding: 2vh 3vw 6vh 3vw;
+    padding: 12vh 5vw 12vh 5vw;
   }
 
   .deck {
@@ -567,7 +567,7 @@ button:focus-visible {
   }
 
   .card {
-    max-height: 42vh;
+     max-height: 42vh;  
   }
 
   .controls {
