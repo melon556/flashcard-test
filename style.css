@@ -22,14 +22,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html {
-    -webkit-touch-callout: none;
-}
-
-* {
-    -webkit-tap-highlight-color: transparent;
-}
-
 button,
 .card,
 .edit-btn,
@@ -307,41 +299,17 @@ body::after {
   gap: 8px;
 }
 
-.edit-btn:focus,
-.edit-btn:active,
-.edit-btn:focus-visible {
+/* semua tombol (edit, kontrol, dsb) tidak menampilkan outline/box-shadow bawaan */
+button {
   outline: none;
-  box-shadow: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.ctrl-btn:focus,
-.ctrl-btn:active,
-.ctrl-btn:focus-visible {
-  outline: none;
-  box-shadow: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-
-.edit-btn{
-    outline:none;
-}
-
-.edit-btn:focus,
-.edit-btn:focus-visible{
-    outline:none !important;
-    box-shadow:none !important;
-}
-
-button{
-    outline:none;
 }
 
 button:focus,
-button:focus-visible{
-    outline:none !important;
-    box-shadow:none !important;
+button:active,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .edit-icon {
@@ -546,6 +514,29 @@ button:focus-visible{
   transform: translateY(-2px);
 
   filter: brightness(1.05);
+}
+
+/* ==========================================================
+   KUNCI ORIENTASI: PORTRAIT SAJA (mobile)
+   Di layar kecil (HP), jika perangkat diputar ke landscape,
+   seluruh halaman diputar balik lewat CSS supaya tetap tampil
+   portrait di layar. Jadi tampilan mobile tidak akan pernah
+   "landscape" — tombol Edit selalu bisa langsung dipakai.
+   (max-height dipakai karena saat landscape, tinggi viewport
+   HP menjadi kecil — sisi pendek fisik layarnya.)
+========================================================== */
+
+@media screen and (orientation: landscape) and (max-height: 550px) {
+  html {
+    overflow: hidden;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vh;
+    height: 100vw;
+  }
 }
 
 /* ---- responsive ---- */
